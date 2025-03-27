@@ -1,7 +1,7 @@
 import java.util.*;
 import java.io.*;
 
-abstract class User{
+abstract class User implements HasMenu{
 
   String userName;
   String PIN;
@@ -12,12 +12,18 @@ abstract class User{
     userName = input.nextLine();
     System.out.print("PIN: ");
     PIN = input.nextLine();
-    return true;
+    if(userName.equals("admin")){
+      if(PIN.equals("0000")){
+        return true;
+      }
+    }
+    return false;
+    // admin
   } // end login
 
-  public boolean login(userName, PIN){
-    if(userName == this.userName){
-      if(PIN == this.PIN){
+  public boolean login(String userName,String PIN){
+    if(userName.equals(this.userName)){
+      if(PIN.equals(this.PIN)){
         System.out.print("Login Successful");
 	return true;
       } // end if
@@ -25,7 +31,7 @@ abstract class User{
     return false;
   } // end login
 
-  public void setUserName(userName){
+  public void setUserName(String userName){
     this.userName = userName;
   } // end setUserName
 
@@ -33,17 +39,18 @@ abstract class User{
     return this.userName;
   } // end getUserName
 
-  public void setPIN(PIN){
-    this.PIN = PIN;
+  public void setPIN(String pin){
+    if(pin.matches("^\\d{4}$)")){
+      this.PIN=pin;
+    }
+    else{
+      System.out.print("Not four digits");
+    }
   } // end setPIN
 
   public String getPIN(){
     return this.PIN;
   } // end getPIN
 
-  abstract String getReport(){
-    
-    return
-  } // end getReport
-
+  abstract String getReport();
 } // end User
