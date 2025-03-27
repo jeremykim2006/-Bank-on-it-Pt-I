@@ -1,4 +1,4 @@
-coCustomer.class: Customer.java User.class CheckingAccount.class SavingsAccount.class
+Customer.class: Customer.java User.class CheckingAccount.class SavingsAccount.class
 	javac -g Customer.java
 
 User.class: User.java HasMenu.class
